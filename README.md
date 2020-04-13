@@ -50,5 +50,7 @@ This feature is still in a TODO stage. It is expected that CMS configuration sho
 2. Allow and Deny aren't quasi-racist terms
 
 See also:
-1. https://twitter.com/andrestaltz/status/1030200563802230786
-2. https://github.com/rails/rails/issues/33677
+1. https://www.clockwork.com/news/creating-inclusive-naming-conventions-in-technology/
+2. https://www.theregister.co.uk/2019/09/03/chromium_microsoft_offensive/
+3. https://twitter.com/andrestaltz/status/1030200563802230786
+4. https://github.com/rails/rails/issues/33677
