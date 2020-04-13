@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="SilverStripe">
+    <description>CodeSniffer ruleset for SilverStripe coding conventions.</description>
+
+    <!-- Start with PSR-12 rules (https://www.php-fig.org/psr/psr-12/) -->
+    <rule ref="PSR12"></rule>
+</ruleset>
