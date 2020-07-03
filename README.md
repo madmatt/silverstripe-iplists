@@ -10,13 +10,20 @@ vendor/bin/sake dev/build flush=1
 
 Visit `/admin/iplists` to define the allow and deny lists that you want.
 
-## Configuration
+## When *not* to use this module
+It's important to spell out when it's not a good idea to use this module. Specifically, it is not recommended to use this module to block IP addresses that are performing denial of service attacks on your website. This module hooks into Silverstripe CMS, meaning that the whole CMS and framework must boot before checking whether the IP address is allowed to access the website or not (so the website does 70% of the work it would do anyway). A much better way to block these attackers is to use a web application firewall such as Cloudflare, and block the offending IPs from accessing the entire website there. 
 
+## Configuration
 By default, this module does not do anything beyond adding a new middleware into every request. This middleware does nothing on CLI. To have this module be useful, you need to configure one or more IP lists. Each IP list can contain multiple URI location rules, as well as both allow and deny rules to determine who can access the URI location rules you specify.
 
-You can configure lists in two different ways: YML and CMS.
+You can configure lists in two different ways: in the CMS, and with developer-controlled YML files.
+
+### CMS configuration
+
+Documentation TBC once feature complete.
 
 ### YML configuration
+**Note:** YML configuration is not implemented yet. Use CMS configuration for now. This configuration API is likely to change, please don't trust the below.
 
 The intention with YML configuration is that these IP addresses are never (or 'very rarely') expected to change. For example, add the IP address of your office VPN here, but don't add your home IP - use the CMS interface for this so you can change it easily later.
 
@@ -39,15 +46,10 @@ Madmatt\IPLists\Model\IPList:
       - 10.0.0.1
 ```
 
-### CMS configuration
-
-This feature is still in a TODO stage. It is expected that CMS configuration should be able to view but not edit any configuration defined in YML. CMS configuration can be used to extend YML configuration (e.g. add additional IPs to the allow/deny lists), but not change what is defined in YML. Also, administrators will be able to define new lists purely in the CMS.
-
 
 ## Why 'allow' and 'deny' instead of 'whitelist' and 'blacklist'?
-
 1. Allow and Deny are more accurate terms than white and black.
-2. Allow and Deny aren't quasi-racist terms
+2. Allow and Deny aren't racist terms.
 
 See also:
 1. https://www.clockwork.com/news/creating-inclusive-naming-conventions-in-technology/

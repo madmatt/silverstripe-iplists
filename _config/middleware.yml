@@ -1,0 +1,10 @@
+---
+Name: iplistmiddleware
+After:
+  - requestprocessors
+---
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Control\Director:
+    properties:
+      Middlewares:
+        IPListMiddleware: '%$Madmatt\IPLists\Middleware\IPListMiddleware'

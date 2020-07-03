@@ -6,7 +6,10 @@
 
     "require": {
         "silverstripe/framework": "^4",
-        "silverstripe/admin": "^1.0"
+        "silverstripe/admin": "^1.0",
+        "symbiote/silverstripe-gridfieldextensions": "^3",
+        "s1lentium/iptools": "^1.1",
+        "silverstripe/auditor": "^2"
     },
 
     "require-dev": {
