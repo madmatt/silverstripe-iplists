@@ -2,7 +2,13 @@
 
 namespace Madmatt\IPLists\Model;
 
+use Exception;
+use IPTools\Network;
+use IPTools\Range;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\FieldType\DBVarchar;
+use SilverStripe\ORM\ManyManyList;
 
 /**
  * Class IP
@@ -16,6 +22,11 @@ use SilverStripe\ORM\DataObject;
  * - CIDR range: A single CIDR range e.g. 10.0.0.1/24
  *
  * [1]: https://github.com/S1lentium/IPTools
+ *
+ * @property string $AddressType The type of IP address this is (singular IP or CIDR block)
+ * @property string $IP The IP address to test against (e.g. 10.1.2.3, 10.0.0.1/24)
+ * @property string $Title The human-readable name for this IP (e.g. Matt's Wireguard VPN endpoint)
+ * @property ManyManyList $Lists The IPList objects this IP in included in
  */
 class IP extends DataObject
 {
@@ -34,9 +45,10 @@ class IP extends DataObject
     ];
 
     private static $summary_fields = [
-        'Title',
-        'IP',
-        'AddressType'
+        'Title' => 'Title',
+        'IP' => 'IP',
+        'AddressType' => 'AddressType',
+        'UsedInLists' => 'Used in...'
     ];
 
     const TYPE_IP = 'IP';
@@ -71,12 +83,31 @@ class IP extends DataObject
      */
     public function contains(string $ip)
     {
-        switch ($this->AddressType) {
-            case self::TYPE_IP:
-                return trim($ip) === trim($this->IP);
+        try {
+            switch ($this->AddressType) {
+                case self::TYPE_IP:
+                    return trim($ip) === trim($this->IP);
 
-            case self::TYPE_CIDR:
-                return N
+                case self::TYPE_CIDR:
+                    return Range::parse($this->IP)->contains(\IPTools\IP::parse($ip));
+            }
+        } catch (Exception $e) {
+            // @todo Handle exceptions gracefully - for now we just say that this object does not contain the given IP
+            return false;
         }
+    }
+
+    public function UsedInLists()
+    {
+        $lists = $this->Lists();
+
+        $numLists = $lists->count();
+        $listTitles = join(', ', $lists->column('Title'));
+
+        if ($listTitles) {
+            $listTitles = sprintf(' (%s)', $listTitles);
+        }
+
+        return DBField::create_field('Varchar', sprintf('%d list%s%s', $numLists, ($numLists === 1 ? '' : 's'), $listTitles));
     }
 }
