@@ -52,7 +52,8 @@ Madmatt\IPLists\Model\IPList:
 2. Allow and Deny aren't racist terms.
 
 See also:
-1. https://www.clockwork.com/news/creating-inclusive-naming-conventions-in-technology/
-2. https://www.theregister.co.uk/2019/09/03/chromium_microsoft_offensive/
-3. https://twitter.com/andrestaltz/status/1030200563802230786
-4. https://github.com/rails/rails/issues/33677
+1. [Dan Williams' patch on the Linux Kernel Mailing List](https://lkml.org/lkml/2020/7/4/229)
+2. [Google Developer documentation style guide](https://developers.google.com/style/word-list)
+3. [Vince Cabansag - Creating inclusive naming conventions in technology](https://www.clockwork.com/news/creating-inclusive-naming-conventions-in-technology/)
+4. [André Staltz on Twitter](https://twitter.com/andrestaltz/status/1030200563802230786)
+5. [David Heinemeier Hansson & Rails codebase](https://github.com/rails/rails/issues/33677)
