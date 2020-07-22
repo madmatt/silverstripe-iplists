@@ -20,14 +20,16 @@ You can configure lists in two different ways: in the CMS, and with developer-co
 
 ### CMS configuration
 
-Documentation TBC once feature complete.
+IP lists can be managed in the CMS. As long as you're logged in as an `ADMIN`, you'll see an 'IP Lists' menu item, where you can create IP lists, add IPs to it, and configure them as needed.
+
+We recommend setting up an IP allowlist for `/admin` and `/Security` (if you don't need to allow the general public to login for anything) to ensure your CMS access is protected.
 
 ### YML configuration
 **Note:** YML configuration is not implemented yet. Use CMS configuration for now. This configuration API is likely to change, please don't trust the below.
 
 The intention with YML configuration is that these IP addresses are never (or 'very rarely') expected to change. For example, add the IP address of your office VPN here, but don't add your home IP - use the CMS interface for this so you can change it easily later.
 
-The below YML config fragment will allow `127.0.0.1` and `10.0.0.2` access to login and view the SilverStripe CMS, and will deny `10.0.0.1` from viewing the website at all (despite the IP being in the allow list for the CMS, 
+The below YML config fragment will (eventually) allow `127.0.0.1` and `10.0.0.2` access to login and view the SilverStripe CMS, and will deny `10.0.0.1` from viewing the website at all (despite the IP being in the allow list for the CMS, 
 
 ```yml
 Madmatt\IPLists\Model\IPList:
